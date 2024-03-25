@@ -74,7 +74,7 @@ module "eks" {
         max_unavailable_percentage = 33
       }
 
-      ebs_optimized           = true
+      ebs_optimized = true
 
       block_device_mappings = {
         xvda = {

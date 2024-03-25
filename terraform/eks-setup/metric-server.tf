@@ -7,6 +7,6 @@ resource "helm_release" "metrics_server" {
   chart      = "metrics-server"
 
   atomic    = true
-  timeout    = 60
-  namespace  = "kube-system"
+  timeout   = 60
+  namespace = "kube-system"
 }

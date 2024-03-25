@@ -1,5 +1,5 @@
-locals{
-  cls_autoscaler_sa_ns = "kube-system"
+locals {
+  cls_autoscaler_sa_ns   = "kube-system"
   cls_autoscaler_sa_name = "cluster-autoscaler"
 }
 
@@ -24,13 +24,13 @@ data "aws_iam_policy_document" "cluster_autoscaler" {
 }
 
 resource "aws_iam_policy" "cluster_autoscaler" {
-  name        = "${var.cluster_name}-cluster-autoscaler-serviceaccount-policy"
-  path        = "/"
+  name   = "${var.cluster_name}-cluster-autoscaler-serviceaccount-policy"
+  path   = "/"
   policy = data.aws_iam_policy_document.cluster_autoscaler.json
 }
 
 module "cluster_autoscaler_sa" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
 
   role_name = "${var.cluster_name}-${local.cls_autoscaler_sa_name}-role"
   role_policy_arns = {
@@ -71,9 +71,9 @@ resource "helm_release" "cluster_autoscaler" {
         clusterName = data.aws_eks_cluster.cluster.name
       }
       extraArgs = {
-        skip-nodes-with-local-storage    = "false"
-        skip-nodes-with-system-pods      = "false"
-        balance-similar-node-groups      = "true"
+        skip-nodes-with-local-storage = "false"
+        skip-nodes-with-system-pods   = "false"
+        balance-similar-node-groups   = "true"
       }
     })
   ]

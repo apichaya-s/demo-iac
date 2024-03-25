@@ -1,25 +1,25 @@
 variable "project_name" {
   description = "project name"
-  type = string
+  type        = string
 }
 
 variable "aws_profile" {
-  type = string
+  type        = string
   description = "aws profile"
 }
 
 variable "region" {
   description = "AWS region"
-  type = string
+  type        = string
 }
 
 variable "cluster_name" {
   description = "AWS EKS cluster name"
-  type = string
+  type        = string
 }
 
 variable "tags" {
   description = "default tag for all AWS resources"
-  type = map(string)
-  default = {}
+  type        = map(string)
+  default     = {}
 }
